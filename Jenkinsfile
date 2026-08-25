@@ -1,10 +1,15 @@
+@Library('test-library') _
+
 pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Git SHA') {
             steps {
-                echo "Hello from ${env.JOB_NAME}"
+                script {
+                    def sha = getGitSha()
+                    echo "Git SHA: ${sha}"
+                }
             }
         }
     }
